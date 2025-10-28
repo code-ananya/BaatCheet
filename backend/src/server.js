@@ -14,16 +14,6 @@ const __dirname = path.dirname(__filename);
 
 dotenv.config();
 
-// Validate required environment variables
-if (!process.env.MONGO_URI) {
-    console.error("ERROR: MONGO_URI is not defined in .env file");
-    process.exit(1);
-}
-if (!process.env.JWT_SECRET_KEY) {
-    console.error("ERROR: JWT_SECRET_KEY is not defined in .env file");
-    process.exit(1);
-}
-
 const app = express();
 const PORT = process.env.PORT || 5001;
 
@@ -36,6 +26,11 @@ app.use(cors({
 }));
 app.use(express.json());
 app.use(cookieParser());
+
+// Connect to DB
+connectDB().catch((error) => {
+    console.error("Failed to connect to MongoDB:", error);
+});
 
 // Routes
 app.use("/api/auth", authRoutes);
@@ -50,16 +45,12 @@ if(process.env.NODE_ENV==="production"){
   });
 }
 
-// Connect to DB and start server
-connectDB()
-    .then(() => {
-        app.listen(PORT, () => {
-            console.log(`Server is running on port ${PORT}`);
-        });
-    })
-    .catch((error) => {
-        console.error("Failed to connect to MongoDB:", error);
-        process.exit(1);
-    });
+// For Vercel serverless
+export default app;
 
-export { app }
+// For local development
+if (process.env.NODE_ENV !== "production") {
+    app.listen(PORT, () => {
+        console.log(`Server is running on port ${PORT}`);
+    });
+}

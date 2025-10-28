@@ -2,18 +2,22 @@
   "version": 2,
   "builds": [
     {
-      "src": "backend/src/server.js",
+      "src": "api/index.js",
       "use": "@vercel/node"
+    },
+    {
+      "src": "frontend/chat-app/dist/**",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "backend/src/server.js"
+      "dest": "/api/index.js"
     },
     {
       "src": "/(.*)",
-      "dest": "backend/src/server.js"
+      "dest": "/api/index.js"
     }
   ]
 }
