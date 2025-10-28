@@ -4,7 +4,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "build": "npm install --prefix backend && npm install --prefix frontend/chat-app && npm run build --prefix frontend/chat-app",
+    "build": "bash render-build.sh",
     "start": "node backend/src/server.js"
   },
   "keywords": [],
