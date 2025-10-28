@@ -4,14 +4,14 @@ set -o errexit
 
 echo "Installing backend dependencies..."
 cd backend
-npm ci
+npm install
 cd ..
 
 echo "Installing frontend dependencies..."
 cd frontend/chat-app
-npm ci
+npm install
 
 echo "Building frontend..."
-npm run build
+npx vite build
 
 echo "Build completed successfully!"
