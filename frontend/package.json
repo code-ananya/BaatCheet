@@ -1,8 +1,0 @@
-{
-  "scripts": {
-    "build": "cd chat-app && npm run build"
-  },
-  "dependencies": {
-    "baatcheet": "file:.."
-  }
-}
