@@ -4,7 +4,7 @@
   "main": "index.js",
 
   "scripts": {
-    "build": "npm install --prefix backend && npm install --prefix frontend/chat-app && npm run build --prefix frontend/chat-app",
+    "build": "bash build.sh",
     "start": "npm run start --prefix backend"
   },
   "keywords": [],
