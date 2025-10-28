@@ -1,0 +1,14 @@
+{
+  "name": "baatcheet",
+  "version": "1.0.0",
+  "main": "index.js",
+
+  "scripts": {
+    "build": "cd backend && npm install && cd ../frontend/chat-app && npm install && npm run build",
+    "start": "npm run start --prefix backend"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
